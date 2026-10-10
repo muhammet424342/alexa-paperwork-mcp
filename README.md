@@ -4,12 +4,18 @@ An MCP server that lets Alexa+ answer questions about your household bills and r
 
 ## What it does
 
-Upload a bill or receipt (PDF, photo, or text) and Alexa+ can answer:
+Send the text of a bill or receipt and Alexa+ can answer:
 - "What bills are due this week?"
 - "How much is my electric bill and when is it due?"
 - "How much did I pay in total this month?"
 
 The server extracts structured fields (vendor, amount, currency, due date) from document text using the Fieldcast extraction API, stores them in SQLite, and exposes tools via MCP (Model Context Protocol) over Streamable HTTP.
+
+## Live demo
+
+- MCP endpoint (Streamable HTTP, spec 2025-11-25): `https://paperwork.157-173-122-86.sslip.io/mcp`
+- Any MCP client can connect, e.g. MCP Inspector: `npx @modelcontextprotocol/inspector` → transport *Streamable HTTP* → the URL above.
+- If a field is not written in the document, extraction returns `null` — the server never guesses a vendor, amount or due date.
 
 ## Requirements
 
